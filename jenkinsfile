@@ -3,7 +3,6 @@ pipeline {
 
     stages {
         stage('Download Batch Script') {
-            agent any
             steps {
                 script {
                     def gitUrl = 'https://github.com/Tybcsy71/hw_devops_39_tibor_szente_jenkins.git'
@@ -20,7 +19,6 @@ pipeline {
         }
         
         stage('Run Batch Script') {
-            agent {jenkins-slave}
             steps {
                 script {
                     bat "install_apache.sh"
