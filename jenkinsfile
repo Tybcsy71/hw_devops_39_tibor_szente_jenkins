@@ -5,8 +5,8 @@ pipeline {
         stage('Download Batch Script') {
             steps {
                 script {
-                    bat "curl https://raw.githubusercontent.com/Tybcsy71/hw_devops_39_tibor_szente_jenkins/main/install_apache.sh > install_apache.sh"
-                    bat "chmod +x install_apache.sh ."
+                    sh "curl https://raw.githubusercontent.com/Tybcsy71/hw_devops_39_tibor_szente_jenkins/main/install_apache.sh > install_apache.sh"
+                    sh "chmod +x install_apache.sh ."
                 }
             }
         }
@@ -15,7 +15,7 @@ pipeline {
             agent {label 'jenkins-slave'}
             steps {
                 script {
-                    bat "install_apache.sh"
+                    sh "install_apache.sh"
                 }
             }
         }
