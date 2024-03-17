@@ -5,7 +5,7 @@ pipeline {
         stage('Download Batch Script') {
             steps {
                 script {
-                    bat "curl -0 https://raw.githubusercontent.com/Tybcsy71/hw_devops_39_tibor_szente_jenkins/main/install_apache.sh"
+                    bat "curl https://raw.githubusercontent.com/Tybcsy71/hw_devops_39_tibor_szente_jenkins/main/install_apache.sh > install_apache.sh"
                     bat "chmod +x install_apache.sh ."
                 }
             }
