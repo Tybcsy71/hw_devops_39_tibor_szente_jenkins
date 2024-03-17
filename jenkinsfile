@@ -1,28 +1,29 @@
 pipeline {
-    node('jenkins-slave') {
+    agent none
 
-        stages {
-            stage('Download Batch Script') {
-                steps {
-                    script {
-                        def gitUrl = 'https://github.com/Tybcsy71/hw_devops_39_tibor_szente_jenkins.git'
-                        def batchScriptPath = 'install_apache.sh'
-                        
-                        // Clone the repository
-                        git branch: 'master', url: gitUrl
-                        
-                        // Copy the batch script to the workspace
-                        bat "copy ${batchScriptPath} ."
-                        bat "chmod +x ${batchScriptPath} ."
-                    }
+    stages {
+        stage('Download Batch Script') {
+            agent any
+            steps {
+                script {
+                    def gitUrl = 'https://github.com/Tybcsy71/hw_devops_39_tibor_szente_jenkins.git'
+                    def batchScriptPath = 'install_apache.sh'
+                    
+                    // Clone the repository
+                    git branch: 'master', url: gitUrl
+                    
+                    // Copy the batch script to the workspace
+                    bat "copy ${batchScriptPath} ."
+                    bat "chmod +x ${batchScriptPath} ."
                 }
             }
-            
-            stage('Run Batch Script') {
-                steps {
-                    script {
-                        bat "install_apache.sh"
-                    }
+        }
+        
+        stage('Run Batch Script') {
+            agent {jenkins-slave}
+            steps {
+                script {
+                    bat "install_apache.sh"
                 }
             }
         }
