@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'jenkins-slave'}
+    agent any
 
     stages {
         stage('Download Batch Script') {
@@ -11,6 +11,7 @@ pipeline {
             }
         }
         
+        agent {label 'jenkins-slave'}
         stage('Run Batch Script') {
             steps {
                 script {
