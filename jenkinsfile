@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'jenkins-slave'}
 
     stages {
         stage('Download Batch Script') {
@@ -12,7 +12,6 @@ pipeline {
         }
         
         stage('Run Batch Script') {
-            agent {label 'jenkins-slave'}
             steps {
                 script {
                     sh "install_apache.sh"
